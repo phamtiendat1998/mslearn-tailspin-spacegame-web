@@ -38,6 +38,12 @@ steps:
   workingDirectory: $(wwwrootDir)
 
 - task: DotNetCoreCLI@2
+  displayName: 'Restore'
+  inputs:
+    command: 'restore'
+    projects: '**/*.csproj'
+
+- task: DotNetCoreCLI@2
   displayName: 'Build the project - $(buildConfiguration)'
   inputs:
     command: 'build'
@@ -54,6 +60,7 @@ steps:
     majorVersion: '1'
     minorVersion: '0'
     patchVersion: '0'
+
 - task: DotNetCoreCLI@2
   displayName: 'Publish the project - $(buildConfiguration)'
   inputs:
